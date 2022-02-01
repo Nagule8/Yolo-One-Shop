@@ -1,0 +1,27 @@
+.user-card {
+    margin: 2rem 2rem 2rem 0;
+    padding: 1.2rem;
+    width: 25%;
+    box-shadow: 0 0 28px 4px rgba($color: $main-color, $alpha: 0.5);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+
+    &__title {
+        color: $main-color;
+        font-weight: 800;
+        font-size: 1.5rem;
+    }
+
+    &__body {
+        margin: 1rem 0;
+
+        p {
+            margin: 0;
+        }
+    }
+}
+
+.user-card:hover {
+    transform: scale(1.1);
+
+}

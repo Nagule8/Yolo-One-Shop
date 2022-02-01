@@ -1,0 +1,41 @@
+.category {
+
+    &__table{
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+
+        thead{
+            color: white;
+            background-color: gray;
+            tr {
+                text-align: left;
+                padding: 8px;
+
+                th{
+                    text-align: left;
+                    padding: 8px;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                text-align: left;
+                padding: 5px;
+
+                td{
+                    text-align: left;
+                    padding: 6px;
+
+                    Button {
+                        margin: 1%;
+                    }
+                }
+            }
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+    }
+}

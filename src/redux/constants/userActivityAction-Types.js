@@ -1,0 +1,4 @@
+export const ActionTypes = {
+    SET_USERaCTIVITIES : "SET_USERaCTIVITIES",
+    SET_USERaCTIVITY : "SET_USERaCTIVITY" 
+}
