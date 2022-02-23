@@ -1,9 +1,8 @@
 import Dexie from 'dexie';
-import { resolvePath } from 'react-router-dom';
 import Toastify from "../containers/ToastNotification/Toastify";
 
 const OfflineSync = () => {
-    const { notifyWarning, notifySuccess,notifyError } = Toastify();   
+    const { notifyWarning, notifySuccess } = Toastify();   
     //store category data in indexDB
     const saveCategoryInOffline =  (data) => {
         //console.log("data",data);

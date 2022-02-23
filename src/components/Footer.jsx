@@ -19,7 +19,7 @@ const footerAboutLinks = [
     }
 ]
 
-const footerCustomerLinks = [
+/*const footerCustomerLinks = [
     {
         display: "About-1",
         path: "/about"
@@ -32,7 +32,7 @@ const footerCustomerLinks = [
         display: "About-3",
         path: "/about"
     }
-]
+]*/
 
 const Footer = () => {
     return (

@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 
 import EditCategory from './components/category/EditCategory';
 
-import HandleCategorySubmit from "../../fetchData/handleSubmit/handleCategorySubmit";
+//import HandleCategorySubmit from "../../fetchData/handleSubmit/handleCategorySubmit";
 
 const Category = () => {
     const categories = useSelector((state)=> state.allCategories.categories);
@@ -26,7 +26,7 @@ const Category = () => {
 
     useEffect(()=>{
         fetchCategories();
-    },[]);
+    },[fetchCategories]);
 
     return (
         <div className="category">

@@ -5,7 +5,7 @@ class CartDataService{
         return http.get(`/cartitems?userId=${userId}`, { withCredentials: true });
     }
     get(id){
-        return http.get(`/cartitems/${id}`);
+        return http.get(`/cartitems/${id}`, { withCredentials: true });
     }
     create(data) {
         return http.post("/cartitems", data, { withCredentials: true });

@@ -12,7 +12,7 @@ const Admin = () => {
     const UserId =useSelector((state)=> state.user.userid);
 
     useEffect(() => {
-      if(UserId == 6){
+      if(UserId === 6){
         fetchUserActivities();
       }
     

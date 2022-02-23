@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import Toastify from "../containers/ToastNotification/Toastify";
 
@@ -8,7 +7,7 @@ import { setUserActivities, setUserActivity } from '../redux/actions/userActivit
 const FetchUserActivity = () => {
 
     const dispatch = useDispatch();
-    const {notifyError, notifyWarning} = Toastify();
+    const {notifyError} = Toastify();
 
     const fetchUserActivities = async ()=>{
         await UseractivitiesService.getAll()

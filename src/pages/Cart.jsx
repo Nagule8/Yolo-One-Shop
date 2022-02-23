@@ -11,17 +11,15 @@ import numberWithComma from '../utils/numberWithComma';
 const Cart = () => {
 
     const cartProducts = useSelector((state)=> state.allCarts.carts);
-    const UserId =useSelector((state)=> state.user.userid);
+    //const UserId =useSelector((state)=> state.user.userid);
 
     const [totalPrice, setTotalPrice] = useState(0);
 
     const totalCart = (cartProducts)=>{
         var tot = 0;  
-        {cartProducts.map(item=>
-            {
-                tot = tot + item.total;
-            }
-        )};
+        cartProducts.map(item=>
+                tot = tot + item.total
+        );
 
         setTotalPrice(tot);
     }

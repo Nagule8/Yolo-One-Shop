@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
@@ -11,31 +11,32 @@ import ProductView from '../components/ProductView';
 
 import { selectedProduct, removeSelectedProduct } from '../redux/actions/productActions';
 
-const Product = props => {
+const Product =() => {
     const products = useSelector((state)=> state.allProducts.products);
-    let product = useSelector((state)=>state.product);
-
-    const selectProduct = (id) => {
-        products.map((item, index) => {
-            if(item.id == id) {
-                dispatch(selectedProduct(item));
-            }
-        })
-    }
+    let product = useSelector((state)=>state.allProducts.product);
     
     const productId = useParams();
     const dispatch = useDispatch();
 
+    const selectProduct = (id) => {
+        products.forEach((item) => {
+            if(item.id === parseInt(id)) {
+                dispatch(selectedProduct(item));
+            }
+        })
+    }
+
     useEffect(()=>{ 
         window.scrollTo(0, 0);
-        if(productId.id && productId.id!=="") {
-            selectProduct(productId.id);
-        }
+
+        selectProduct(productId.id);
+
         return()=>{
             dispatch(removeSelectedProduct());
         }
         
-    },[productId.id]);
+    },[productId]);
+
 
     return (
         <Helmet title={product.name}>
@@ -60,9 +61,9 @@ const Product = props => {
                         smCol={1}
                         gap={20}
                     >
-                        { Object.keys(product).length === 0 ? <div>
-                            Loading...
-                        </div> :
+                        {Object.keys(products).length === 0 ? (<div>
+                                Loading...
+                            </div>) :
                             products.map((item, index) => (
                                 <ProductCard 
                                     key={index}
@@ -75,7 +76,6 @@ const Product = props => {
                                 />
                             ))
                         }
-
                     </Grid>
                 </SectionBody>
             </Section>

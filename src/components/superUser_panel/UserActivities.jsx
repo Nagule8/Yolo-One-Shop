@@ -10,7 +10,7 @@ const UserActivities = () => {
     const useractivities = useSelector((state) => state.userActivity.userActivities);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(50);
+    const [postsPerPage] = useState(50);
 
     //Current user activities
     const indexOfLastPost = currentPage * postsPerPage;

@@ -13,49 +13,32 @@ import ProductCard from '../components/ProductCard';
 import policy from '../assets/fake-data/policy';
 import banner from '../assets/images/banner.png';
 
-import FetchUser from '../fetchData/FetchUser';
-import FetchCart from '../fetchData/FetchCart';
-
-const Home = () => {
-    
-    const {fetchUsers, fetchUserId, fetchUser} = FetchUser();
-    const {fetchCarts} = FetchCart();    
+const Home = () => {    
 
     const [topSelling, setTopSelling] = useState([]);
     const [newArrival, setNewArrival] = useState([]);
     const [popular, setPopular] = useState([]);
 
-    const name = window.localStorage.getItem("Name");
-
     const products = useSelector((state)=> state.allProducts.products);
-    const UserId =useSelector((state)=> state.user.userid);
-
-    const randomProductSelector = () => {
-
-        setNewArrival((products.sort(()=> Math.random() - Math.random()).slice(0,3)));
-        setTopSelling(products.sort(()=> Math.random() - Math.random()).slice(0,4));
-        setPopular(products.sort(()=> Math.random() - Math.random()).slice(0,5));
-    } 
     
+    //render random products
     useEffect(()=>{
-        fetchUser();
-        if(name){
-            fetchUserId(name);
-        }
-        if(name == "SuperUser"){
-            fetchUsers();
-        }
-        if(UserId != 1){
-            fetchCarts(UserId);
-        }
+
+        const randomProductSelector = () => {
+
+            setNewArrival((products.sort(()=> Math.random() - Math.random()).slice(0,3)));
+            setTopSelling(products.sort(()=> Math.random() - Math.random()).slice(0,4));
+            setPopular(products.sort(()=> Math.random() - Math.random()).slice(0,5));
+        } 
+        
         randomProductSelector();
-      },[products, UserId]);
+    },[products]);
 
     return (
         <Helmet title='Made for U'>
             {/* Hero slider */}
             { Object.keys(popular).length === 0 ? <div>Loading...</div> :
-                <HeroSlider data={popular} control={true} auto={true} timeout={5000} />
+                <HeroSlider data={newArrival} control={true} auto={true} timeout={5000} />
             }
             {/* End Hero slider */}   
 

@@ -19,6 +19,12 @@ export const CartReducer = (state = iniCartState,{type,payload})=>{
                     ...state.carts.filter((cart) => cart.id !== payload.id)
                 ]
             };
+        case ActionTypes.UPDATE_QUANTITY:
+            const indexU = state.carts.findIndex(cart => cart.id === payload.id);
+            state.carts[indexU].quantity = payload.quantity;
+            return {
+                carts: [...state.carts]
+            }
         default :
             return state;
     }

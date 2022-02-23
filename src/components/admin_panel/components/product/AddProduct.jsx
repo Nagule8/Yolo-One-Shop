@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from "react-redux";
-import {Row, Col, Form} from "react-bootstrap";
 
 import Button from '../../../Button';
 

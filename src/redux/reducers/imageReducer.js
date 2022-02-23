@@ -7,8 +7,10 @@ const initialState = {
 export const ImageReducer = (state = initialState,{type, payload}) => {
     switch(type){
         case ActionTypes.SET_IMAGE:
+            let existImages = state.images.filter((image) => !image.imagename.toLowerCase().includes(payload.imagename.toLowerCase()) );
+
             return { ...state,
-                images:[...state.images, payload]
+                images:[...existImages, payload]
             };
         default :
             return state;

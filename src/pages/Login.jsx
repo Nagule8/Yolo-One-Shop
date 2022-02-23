@@ -13,7 +13,7 @@ import RegisterUserDataService from '../services/registeruser.service';
 import Toastify from '../containers/ToastNotification/Toastify';
 
 const Login = () => {
-    const {notifySuccess, notifyError, notifyWarning} = Toastify();
+    const {notifySuccess, notifyError} = Toastify();
 
     const [Name, setName] = useState("");
     const [Password, setPassword] = useState("");
@@ -45,7 +45,7 @@ const Login = () => {
             <div className="title">Login</div>
             <div className="content">
                 <div className="image">
-                <img src={loginImg} />
+                <img src={loginImg} alt='' />
                 </div>
                 <div className="form">
                 <div className="form-group">
@@ -54,7 +54,17 @@ const Login = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" placeholder="password" onChange={(e)=> setPassword(e.target.value)} />
+                    <input type="password" name="password" placeholder="password" 
+                           onChange={(e)=> setPassword(e.target.value)} 
+                           onPaste={(e)=>{
+                                e.preventDefault()
+                                return false;
+                            }} 
+                            onCopy={(e)=>{
+                                e.preventDefault()
+                                return false;
+                            }}
+                    />
                 </div>
                 </div>
             </div>
@@ -64,7 +74,7 @@ const Login = () => {
                     Register
                 </Link>
             </div>
-            <div className="footer">
+            <div className="footer__btn">
                 <Button size='sm' onClick={login}>
                     Login
                 </Button>

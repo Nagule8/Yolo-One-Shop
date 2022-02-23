@@ -13,14 +13,14 @@ const Catalog = () => {
     const products = useSelector((state)=> state.allProducts.products);
     const categories = useSelector((state)=> state.allCategories.categories);
 
-    const {filterProducts, sortProducts, searchProducts, clearFilter} = FilterFunctions();
+    const {filterProducts, sortProducts, searchProducts} = FilterFunctions();
 
     const filterRef = useRef(null);
     const showHideFilter = () => filterRef.current.classList.toggle('active');
 
     const sortValue = [
         "Latest","Highest", "Lowest", "Alphabetic"
-    ]
+    ];
 
     return (
         <Helmet title='Catalog'>

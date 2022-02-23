@@ -2,6 +2,7 @@ import { ActionTypes } from "../constants/categoryAction-Types";
 
 const initialState = {
     categories:[],
+    category:{}
 };
 
 export const CategoryReducer = (state = initialState,{type, payload})=>{
@@ -13,6 +14,10 @@ export const CategoryReducer = (state = initialState,{type, payload})=>{
             return {
                 ...state,
                 categories:[...state.categories, payload]};
+        case ActionTypes.SELECTED_CATEGORY:
+            return {
+                ...state,category: payload
+            };
         case ActionTypes.DELETE_CATEGORY:
             return {
                 categories:[
@@ -20,15 +25,6 @@ export const CategoryReducer = (state = initialState,{type, payload})=>{
                 ]
             };
         default :
-            return state;
-    }
-}
-
-export const selectedCategoryReducer = (state={},{type, payload})=>{
-    switch(type){
-        case ActionTypes.SELECTED_CATEGORY:
-            return {...state,...payload};
-        default:
             return state;
     }
 }

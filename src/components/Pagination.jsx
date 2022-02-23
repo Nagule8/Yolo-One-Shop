@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 const Pagination = ({currentPage, postsPerPage, totalPosts, paginate}) => {
 
-    const pageNumbers = [];
+    const pageNumbers = useMemo(() => [], []);
     const [arrayOfCurrPages, setArrayOfCurrPages] = useState([]);
 
     for (let i=1; i<= Math.ceil(totalPosts / postsPerPage); i++ ){
@@ -20,7 +20,7 @@ const Pagination = ({currentPage, postsPerPage, totalPosts, paginate}) => {
       if(currentPage >= 1 && currentPage <= 9){
         tempCurrNumberOfPages = [1,2,3,4,5,6,7,8,9,10, dotsInitial, pageNumbers.length]
       }
-      else if(currentPage == 10){
+      else if(currentPage === 10){
           const sliced = pageNumbers.slice(0, 10);
           tempCurrNumberOfPages = [...sliced, dotsInitial, pageNumbers.length]
       }
@@ -35,20 +35,20 @@ const Pagination = ({currentPage, postsPerPage, totalPosts, paginate}) => {
           tempCurrNumberOfPages = [1, dotsLeft, ...sliced]
       }
 
-      else if(currentPage == dotsInitial){
+      else if(currentPage === dotsInitial){
           console.log(currentPage);
           paginate(arrayOfCurrPages[arrayOfCurrPages.length - 3] + 1);
       }
-      else if(currentPage == dotsRight) {
+      else if(currentPage === dotsRight) {
           paginate(arrayOfCurrPages[3] + 2);
       }
-      else if(currentPage == dotsLeft) {
+      else if(currentPage === dotsLeft) {
         paginate(arrayOfCurrPages[3] - 2);
     }
 
       setArrayOfCurrPages(tempCurrNumberOfPages);
     
-    }, [currentPage]);    
+    }, [currentPage, arrayOfCurrPages, pageNumbers, paginate]);    
 
     return (
         <div className='pagination-container'>

@@ -14,18 +14,24 @@ const FetchProduct = () => {
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.user);
-    const { addToCart } = FetchCart(); 
-    const {notifySuccess, notifyError, notifyWarning} = Toastify();
 
-    const fetchProducts = async ()=>{
-        await ProductDataService.getAll()
+    const { addToCart } = FetchCart(); 
+    const {notifyError, notifyWarning} = Toastify();
+
+    const fetchProducts = ()=> async (dispatch, getState) => {
+        /*await ProductDataService.getAll()
         .then((response)=>{
             dispatch(setProducts(response.data));
         })
         .catch((err) => {
             notifyError("Failed to fetch products");
             //console.log("Error: ",err);
-        });
+        });*/
+
+        await ProductDataService.getAll().then((res) => {
+            dispatch(setProducts(res.data));
+        })
+
     };
 
     const fetchProductDetail = async (id)=>{
@@ -41,12 +47,12 @@ const FetchProduct = () => {
     };
 
     const fetchImage = async (products) => {
-        
         products.map(async (product)=>{
             const imagename = product.imageName;
             var res = await ImageUploadService.getImage(imagename);
             dispatch(displayImage(imagename, res.data));
         });
+        
     }
 
     const deleteItem =async (item) => {

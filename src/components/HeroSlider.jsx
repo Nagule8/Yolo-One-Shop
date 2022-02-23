@@ -78,18 +78,17 @@ const HeroSliderItem = props =>{
 
     const [imagedata, setImage] = useState("");
 
-    const getImage = ()=>{
-        images.map((image)=>{      
-          if(image.imagename === (props.item.imageName)){
-            setImage(image.image);
-          }
-        })
-    }
+    useEffect(() => {      
+        const getImage = (images)=>{
+            images.forEach((image)=>{      
+              if(image.imagename === (props.item.imageName)){
+                setImage(image.image);
+              }
+            })
+        }  
+        getImage(images);
 
-    useEffect(() => {
-        getImage();
-
-    },[images]);
+    },[images, props.item.imageName]);
     
     
     return(

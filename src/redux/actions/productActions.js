@@ -52,6 +52,12 @@ export const removeSelectedProduct = () =>{
     };
 };
 
+export const removeModalSelectedProduct = () =>{
+    return{
+        type: ActionTypes.REMOVE_MODAL_SELECTED_PRODUCT,
+    };
+};
+
 export const filteredProducts = (categoryId) => {
     return{
         type: ActionTypes.FILTER_PRODUCTS,

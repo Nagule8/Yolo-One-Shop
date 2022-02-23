@@ -18,7 +18,7 @@ const FilterFunctions = () => {
 
     const sortProducts = (event) => {
         const sortValue = event.target.name;
-        console.log(sortValue);
+
         if(sortValue === "Latest"){
             fetchProducts();
         }
@@ -27,6 +27,7 @@ const FilterFunctions = () => {
 
     const searchProducts = (event) => {
         const searchValue = event.target.value;
+
         if(searchValue === ""){
             fetchProducts();
         }

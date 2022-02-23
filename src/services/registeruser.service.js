@@ -20,10 +20,10 @@ class RegisterUserDataService{
     }
 
     login(data){
-        return http.post("/registerusers/login", data,{ withCredentials: true });
+        return http.post("/registerusers/login", data);
     }
     logout(){
-        return http.post("/registerusers/logout", { withCredentials: true });
+        return http.post("/registerusers/logout");
     }
 }
 

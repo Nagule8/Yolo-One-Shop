@@ -12,7 +12,6 @@ import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
-import ImageUploadService from './services/imageUpload.service';
 
 clientsClaim();
 
@@ -84,7 +83,7 @@ self.addEventListener("sync", (event) => {
     event.waitUntil(indexedDB.databases()
     .then(res =>{
       res.map(database=>{
-        if(database.name != "workbox-expiration"){
+        if(database.name !== "workbox-expiration"){
           add(database.name,"post" + database.name);
         }
         
@@ -117,7 +116,7 @@ self.addEventListener("sync", (event) => {
     let fCategory = "/categories";
     let fProduct  = "/items";
     let apiName;
-    if(idbName == "Category"){ apiName = fCategory }
+    if(idbName === "Category"){ apiName = fCategory }
     else{ 
       apiName = fProduct;
 

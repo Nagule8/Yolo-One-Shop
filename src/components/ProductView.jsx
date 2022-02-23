@@ -32,12 +32,12 @@ const ProductView = (props) => {
     } }
 
     const [Image, setImage] = useState("");
-    const [previewImg, setPreviewImg] = useState(product.imageName);
+    const [previewImg, setPreviewImg] = useState("");
     const [descriptionExpand, setDescriptionExpand] = useState(false);
 
     const [color, setColor] = useState(undefined);
     const [size, setSize] = useState(undefined);
-    const [quantity, setQuantity] = useState(1);
+    //const [quantity, setQuantity] = useState(1);
 
     const colors = [
         "white", "red", "orange"
@@ -46,26 +46,31 @@ const ProductView = (props) => {
         "S", "M", "L", "XL", "XXL"
     ]
 
-    const getImage = ()=>{ 
-        images.map((image)=>{      
-            if(image.imagename === (product.imageName)){
-            setImage(image.image);
-            }
-        });
-    }
+    
 
-    const updateQuantity = (type) => {
+    /*const updateQuantity = (type) => {
         if (type === 'plus'){
             setQuantity(quantity + 1);
         }
         else{
             setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
         }
-    }
+    }*/
 
     useEffect(() => {
-        getImage();
-    });
+
+        const getImage = (images)=>{ 
+            images.forEach((image)=>{      
+                if(image.imagename === (product.imageName)){
+                setImage(image.image);
+                }
+            });
+        }
+        
+        getImage(images);
+
+        return setPreviewImg("");
+    },[images, product]);
 
   return (
     <div className='product'>
@@ -79,7 +84,7 @@ const ProductView = (props) => {
                 </div>
             </div>
             <div className="product__images__main">
-                    <img src={`data:image/jpeg;base64,${previewImg}`} alt="" />
+                    { previewImg !== "" ?  <img src={`data:image/jpeg;base64,${previewImg}`} alt="" /> : null}
                 </div>
             <div className={`product-description ${descriptionExpand ? 'expand' : ''}`}>
                 <div className="product-description__title">
@@ -99,11 +104,11 @@ const ProductView = (props) => {
             <h1 className="product__info__title">{product.name}</h1>
             <div className="product__info__item">
                 <span className="product__info__item__price">
-                    Price: {numberWithComma(product.price)}
+                    Price: ${numberWithComma(product.price)}
                 </span>
             </div>
             {
-                product.categoryId == 3 ? <div className="product__info__item">
+                product.categoryId === 3 ? <div className="product__info__item">
                     <div className="product__info__item__title">
                         Color
                     </div>
@@ -119,7 +124,7 @@ const ProductView = (props) => {
                 </div> : ''
             }   
             {
-                product.categoryId == 3 ? <div className="product__info__item">
+                product.categoryId === 3 ? <div className="product__info__item">
                     <div className="product__info__item__title">
                         Size
                     </div>
@@ -137,9 +142,9 @@ const ProductView = (props) => {
                 </div> : ''
             } 
             <div className="product__info__item">
-                <Button onClick={() => handleSubmit(product)}> Add to Cart </Button> 
+                <Button size='sm' onClick={() => handleSubmit(product)}> Add to Cart </Button> 
                 <Link to='/cart'>
-                    <Button onClick={() => dispatch(removeSelectedProduct())}> Go to Cart </Button>
+                    <Button size='sm' onClick={() => dispatch(removeSelectedProduct())}> Go to Cart </Button>
                 </Link>   
             </div>       
         </div>

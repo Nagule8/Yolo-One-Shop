@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import FetchCart from '../fetchData/FetchCart';
 import numberWithComma from '../utils/numberWithComma';
 
+
 const CartItem = (props) => {
 
     const [item, setItem] = useState(props.item);
@@ -15,28 +16,28 @@ const CartItem = (props) => {
 
     const { UpdateQuantity, deleteCartItem } = FetchCart();
 
-    const getImage = ()=>{ 
-        images.map((image)=>{      
-            if(image.imagename === (item.imageName)){
-            setImage(image.image);
-            }
-        });
-    }
-
     const updateQuantity = (opt) => {
-        if(opt == '-'){ 
+        if(opt === '-'){ 
             UpdateQuantity(item.id, item.quantity - 1 === 0 ? 1 : item.quantity - 1);
          }
-        if(opt == '+') {
+        if(opt === '+') {
             UpdateQuantity(item.id, item.quantity + 1);
         }
     }
 
     useEffect(() => {
-      setItem(props.item);
-      getImage();
+        setItem(props.item);
+        const getImage = (images)=>{ 
+            images.forEach((image)=>{      
+                if(image.imagename === (item.imageName)){
+                setImage(image.image);
+                }
+            });
+        }
+
+        getImage(images);
     
-    }, [props.item]);
+    }, [ props.item, images, item.imageName ]);
     
     
     return (

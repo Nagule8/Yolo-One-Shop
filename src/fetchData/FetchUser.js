@@ -36,10 +36,13 @@ const FetchUser = () => {
     };
 
     const fetchUser = ()=>{
+        
         const Name = window.localStorage.getItem("Name");
         const Password = window.localStorage.getItem("Password");
     
-        dispatch(setUser({Name,Password}));
+        if(Name !== null){
+            dispatch(setUser({Name,Password}));
+        }
     };
     return {
         fetchUsers, fetchUserId, fetchUser

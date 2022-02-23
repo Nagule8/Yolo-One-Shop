@@ -30,6 +30,13 @@ export const editCartItem = (cartItem)=>{
     };
 };
 
+export const updateQuantity = (cartItem) => {
+    return {
+        type: ActionTypes.UPDATE_QUANTITY,
+        payload: cartItem
+    };
+}
+
 export const deleteCartItems = (cartItem)=>{
     return{
         type: ActionTypes.DELETE_CART,

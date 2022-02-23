@@ -88,7 +88,7 @@ const Header = () => {
                             ))
                         }  
                         {
-                            name == "Admin" || name == "SuperUser" ? <div 
+                            name === "Admin" || name === "SuperUser" ? <div 
                                 className={`header__menu__item header__menu__left__item active`}
                                 onClick={menuToggle}    
                             >

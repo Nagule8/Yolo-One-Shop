@@ -44,7 +44,7 @@ const Sidebar = () => {
     const location = useLocation();
 
     if(name === "SuperUser") {
-        superSuNav.map((item) => {
+        superSuNav.forEach((item) => {
             sidebarNav.push(item);
         })
     }

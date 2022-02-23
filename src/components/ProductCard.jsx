@@ -19,24 +19,24 @@ const ProductCard = props => {
     const dispatch = useDispatch();
 
     const modalProduct = (id) => {
-        products.map((item, index) => {
-            if(item.id == id) {
+        products.forEach((item) => {
+            if(item.id === id) {
                 dispatch(modalSelectedProduct(item));
             }
         })
     }
 
-    const getImage = ()=>{ 
-        images.map((image)=>{      
-          if(image.imagename === (props.imageName)){
-            setImage(image.image);
-          }
-        })
-      }
-
       useEffect(() => {
-        getImage();
-      },[images]);
+        const getImage = (images)=>{ 
+            images.forEach((image)=>{      
+                if(image.imagename === (props.imageName)){
+                setImage(image.image);
+                }
+            })
+        }
+        
+        getImage(images);
+      },[images, props.imageName]);
 
     return (
         <div className='product-card'>

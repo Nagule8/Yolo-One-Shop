@@ -4,12 +4,12 @@ import { useSelector } from "react-redux";
 import ProductView from './ProductView';
 import Button from './Button';
 
-import { removeSelectedProduct } from '../redux/actions/productActions';
+import { removeModalSelectedProduct } from '../redux/actions/productActions';
 import { useDispatch } from 'react-redux';
 
 const ProductViewModal = () => {
     
-    const product = useSelector((state)=>state.modalProduct);
+    const product = useSelector((state)=>state.allProducts.modalProduct);
 
     const dispatch = useDispatch();
 
@@ -18,7 +18,7 @@ const ProductViewModal = () => {
             <div className="product-view__modal__content">
                     < ProductView product={product} />
                     <div className="product-view__modal__content__close">
-                        <Button size='sm' onClick={() => dispatch(removeSelectedProduct())}>
+                        <Button size='sm' onClick={() => dispatch(removeModalSelectedProduct())}>
                             close
                         </Button>
                     </div>

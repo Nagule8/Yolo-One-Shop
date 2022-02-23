@@ -12,7 +12,7 @@ const Login_Logout = () => {
     const dispatch = useDispatch();
 
     const logout = async ()=>{
-        const res = await RegisterUserDataService.logout()
+        await RegisterUserDataService.logout()
         .then(()=>{
             dispatch(deleteUser());
             notifySuccess("Successfully logged out.");
@@ -23,6 +23,7 @@ const Login_Logout = () => {
 
         //console.log(res.data);
     };
+
 
     return{
          logout

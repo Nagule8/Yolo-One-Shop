@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://yolooneshop.azurewebsites.net/api",
+  baseURL: "https://yoloshopapi.azurewebsites.net/api",
   withCredentials: true,
-  headers: {
+  headers: {    
     "Content-type": "application/json"
   }
 });
